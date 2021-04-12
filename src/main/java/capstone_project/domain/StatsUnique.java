@@ -13,10 +13,10 @@ import javax.persistence.*;
 @Getter
 @Entity
 @Table(name=("TB_TRAIN_DATA_STATUS_UNIQUE"))
-@IdClass(StatusUniqueId.class)
+@IdClass(StatsUniqueId.class)
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class)
-public class StatusUnique extends LogTime {
+public class StatsUnique extends LogTime {
 
     @Id
     @ManyToOne(fetch=FetchType.LAZY)
@@ -72,7 +72,11 @@ public class StatusUnique extends LogTime {
     private long encMode;
 
     @Builder
-    public StatusUnique(String trainColId, String Gbn, long rowCnt, long uniqueCnt, long missCnt, String missExcept, long encMin, long encMax, long encMean, long encMedian, long enc25, long enc75, long encTrimMean, long encMode){
+    public StatsUnique(TrainDataType trainDataType, String trainColId, String Gbn, long rowCnt, long uniqueCnt,
+                       long missCnt, String missExcept, long encMin, long encMax, long encMean,
+                       long encMedian, long enc25, long enc75, long encTrimMean, long encMode){
+
+        this.trainDataType = trainDataType;
         this.trainColId = trainColId;
         this.Gbn = Gbn;
         this.rowCnt = rowCnt;
@@ -86,6 +90,6 @@ public class StatusUnique extends LogTime {
         this.enc25 = enc25;
         this.enc75 = enc75;
         this.encTrimMean = encTrimMean;
-        
+        this.encMode = encMode;
     }
 }

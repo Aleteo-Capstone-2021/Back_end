@@ -1,7 +1,6 @@
 package capstone_project.domain;
 
 import capstone_project.LogTime;
-import capstone_project.RegMdfTime;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.AccessLevel;
@@ -29,7 +28,7 @@ public class RPLLog extends LogTime {
             @JoinColumn(name="TRAIN_DATA_GBN"),
             @JoinColumn(name="UNIQUE_VAL")
     })
-    private StatusList statusList;
+    private StatsList statsList;
 
     @Id
     @Column(name="RPL_SEQ")
@@ -45,8 +44,8 @@ public class RPLLog extends LogTime {
     private String abn_YN;
 
     @Builder
-    public RPLLog (StatusList statusList, long rplSeq, long uniqueValCnt, String replaceVal, String abn_YN){
-        this.statusList = statusList;
+    public RPLLog (StatsList statsList, long rplSeq, long uniqueValCnt, String replaceVal, String abn_YN){
+        this.statsList = statsList;
         this.rplSeq = rplSeq;
         this.uniqueValCnt = uniqueValCnt;
         this.replaceVal = replaceVal;

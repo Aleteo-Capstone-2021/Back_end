@@ -33,7 +33,7 @@ public class ProjectService {
     public void update(long id, ProjectDto Dto){
         Project project = new Project();
         project = projectRepository.findbyId(id);
-        project.builder().name(Dto.getName()).desc(Dto.getDesc()).type(Dto.getType());
+        project.builder().name(Dto.getName()).desc(Dto.getDesc()).algorithmType(Dto.getAlgorithmType());
         projectRepository.save(project);
     }
 

@@ -8,5 +8,5 @@ import lombok.Setter;
 public class ProjectDto {
     private String name;
     private String desc;
-    private String type;
+    private String algorithmType;
 }

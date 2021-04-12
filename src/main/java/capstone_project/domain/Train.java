@@ -32,10 +32,10 @@ public class Train extends RegMdfTime {
     private String name;
 
     @Column(name="TRAIN_DATA_UP_PATH")
-    private String path;
+    private String dataPath;
 
     @Column(name="TRAIN_COL_CNT")
-    private long col_cnt;
+    private long colCnt;
 
     @Column(name="TRAIN_LIMIT_TIME_SECOND")
     private long limit;
@@ -47,20 +47,32 @@ public class Train extends RegMdfTime {
     private long testRatio;
 
     @Column(name="TRAIN_DATA_STATUS")
-    private String status;
+    private String trainDataStatus;
+
+    @Column(name="TRAIN_STATUS")
+    private String trainStatus;
 
     @OneToMany(mappedBy = "train")
     List<TrainDataType> trainDataTypes = new ArrayList<>();
 
+    void addTrainDataType(TrainDataType trainDataType){
+        trainDataType.builder().train(this).build();
+        this.trainDataTypes.add(trainDataType);
+    }
+
     @Builder
-    public Train(Project project, String name, String path, long col_cnt, long trainRatio, long testRatio, String status){
+    public Train(Project project, String name, String dataPath, long colCnt,
+                 long limit,long trainRatio, long testRatio,
+                 String trainDataStatus,String trainStatus){
         this.project = project;
         this.name = name;
-        this.path = path;
-        this.col_cnt = col_cnt;
+        this.dataPath = dataPath;
+        this.colCnt = colCnt;
+        this.limit = limit;
         this.trainRatio= trainRatio;
         this.testRatio = testRatio;
-        this.status = status;
+        this.trainDataStatus = trainDataStatus;
+        this.trainStatus = trainStatus;
     }
 
 }

@@ -8,7 +8,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 public class RPLLogId implements Serializable {
 
-    private StatusList statusList;
+    private StatsList statsList;
 
     @Column(name="RPL_SEQ")
     private long rplSeq;

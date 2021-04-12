@@ -2,16 +2,12 @@ package capstone_project.Controller;
 
 import capstone_project.DTO.ProjectDto;
 import capstone_project.Service.ProjectService;
-import capstone_project.Service.UserService;
 import capstone_project.domain.Project;
 import capstone_project.domain.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -23,7 +19,7 @@ public class ProjectController {
     @PostMapping("project/create") // project create
     public String createProject(@ModelAttribute("User") User user, ProjectDto Dto){
         Project project = new Project();
-        project.builder().name(Dto.getName()).desc(Dto.getDesc()).type(Dto.getType()).user(user).build();
+        project.builder().name(Dto.getName()).desc(Dto.getDesc()).algorithmType(Dto.getAlgorithmType()).user(user).build();
         user.addProject(project);
 
         return "project";

@@ -14,6 +14,7 @@ import javax.persistence.*;
 @Table(name ="TB_USER_LOGIN")
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 public class User_login extends LogTime {
+
     @Id
     @Column(name="USER_ID")
     private long id;

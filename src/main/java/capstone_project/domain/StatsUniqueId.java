@@ -7,7 +7,7 @@ import javax.persistence.Column;
 import java.io.Serializable;
 
 @NoArgsConstructor
-public class StatusUniqueId implements Serializable {
+public class StatsUniqueId implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private TrainDataType traindDataType;

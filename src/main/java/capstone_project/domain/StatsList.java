@@ -9,14 +9,16 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Entity
 @Table(name=("TB_TRAIN_DATA_STATS_VAL_LIST"))
-@IdClass(StatusListId.class)
+@IdClass(StatsListId.class)
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class)
-public class StatusList extends LogTime {
+public class StatsList extends LogTime {
 
     @Id
     @ManyToOne(fetch=FetchType.LAZY)
@@ -48,8 +50,16 @@ public class StatusList extends LogTime {
     @Column(name="ABN_YN")
     private String abn_YN;
 
+    @OneToMany(mappedBy = "stautsList")
+    List<RPLLog> RPLLogs = new ArrayList<>();
+
+    void addRpl(RPLLog rplLog){
+        rplLog.builder().statsList(this).build();
+        this.RPLLogs.add(rplLog);
+    }
+
     @Builder
-    public StatusList(TrainDataType trainDataType, String trainColId, String gbn, String uniqueVal, long uniqueValCnt, String replaceVal, String abn_YN){
+    public StatsList(TrainDataType trainDataType, String trainColId, String gbn, String uniqueVal, long uniqueValCnt, String replaceVal, String abn_YN){
         this.trainDataType = trainDataType;
         this.trainColId = trainColId;
         this.gbn = gbn;
